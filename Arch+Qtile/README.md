@@ -1,12 +1,13 @@
+# Информация
+
+TODO
+
 # Галерея
 
 TODO
 
-# Информция
 
-TODO
-
-# Установка Arch Linux
+# Arch Linux
 
 - Для двойной загрузки с Windows руководствуемся разделом на [Wiki](https://wiki.archlinux.org/title/Dual_boot_with_Windows)
 - Важно уделить внимание функции Secure Boot — раздел на [Wiki](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot)
@@ -105,16 +106,14 @@ swapon /dev/раздел_подкачки
 pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware amd-ucode grub efibootmgr os-prober networkmanager sudo nano git
 ```
 
-### Настройка системы
-
-#### Генерация `fstab` и `chroot` в систему
+### Генерация `fstab` и `chroot` в систему
 
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-#### Настройка времени
+### Настройка времени
 
 ```bash
 ln -sf /usr/share/zoneinfo/Регион/Город /etc/localtime
@@ -122,7 +121,7 @@ hwclock --systohc
 date
 ```
 
-#### Настройка локали
+### Настройка локали
 
 Раскоментируйте нужные строки
 
@@ -153,7 +152,7 @@ echo LANG=ru_RU.UTF-8 > /etc/locale.conf
 echo FONT=cyr-sun16 > /etc/vconsole.conf
 ```
 
-#### Настройка сети
+### Настройка сети
 
 Задайте свой `HostName`
 
@@ -179,7 +178,7 @@ nano /etc/hosts
 systemctl enable NetworkManager.service
 ```
 
-#### Настройка менеджера пакетов
+### Настройка менеджера пакетов
 
 Присвойте опции `ParallelDownloads` положительное значение, равное желаемому количеству одновременно загружаемых пакетов
 
@@ -198,12 +197,12 @@ ILoveCandy
 
 Остальные настройки просто делают вывод менеджера более приятным глазу
 
-#### Настройка загрузчика grub
+### Настройка загрузчика grub
 
 Установка
 
 ```bash
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --removable
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB --removable
 ```
 
 Раскоментируйте параметр для обнаружения других ОС
@@ -222,7 +221,7 @@ GRUB_DISABLE_OS_PROBER=false
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-#### Настройка пользователей
+### Настройка пользователей
 
 Установка пароля `root`, создание пользователя `username`
 
@@ -252,7 +251,7 @@ reboot now
 
 # Настройка YAY
 
-### Установка
+## Установка
 
 ```bash
 sudo pacman -S --needed git base-devel  
@@ -261,7 +260,7 @@ cd yay
 makepkg -si
 ```
 
-### Первое использование
+## Первое использование
 
 Обновление пакетов разработки
 
@@ -269,11 +268,15 @@ makepkg -si
 - После этого `yay -Syu --devel` будет проверять обновления пакетов разработки.
 - Используйте `yay -Y --devel --save`, чтобы сделать обновления пакетов разработки постоянно включенными (тогда `yay` и `yay -Syu` будут всегда проверять пакеты разработки).
 
-# Установка Qtile
+# Qtile
+
+## Установка
 
 ```bash
 pacman -S xorg-server qtile
 ```
+
+Драйвера на видеокарту
 
 Копирование дефолтного конфига
 
@@ -293,10 +296,17 @@ exec qtile
 
 Запуск командой `startx`
 
+## Настройка
 
-# TODO
+TODO
 
-- Настройка оконного менеджера
-- Доп пакеты
-  nvidia-dkms nvidia-settings alacritty git fish alsa dosfstools mtools ntfs-3g btrfs-progs virt-manager
+# Fish
+
+TODO
+
+# Мои пакеты и приложения
+
+TODO
+
+- nvidia-dkms nvidia-settings alacritty git fish alsa dosfstools mtools ntfs-3g btrfs-progs virt-manager
 - Снапшоты
